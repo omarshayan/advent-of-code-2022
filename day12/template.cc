@@ -50,6 +50,34 @@ int main() {
             }
 
         }
+        while (addxcounters.front() ==2 ) { 
+            x += addantbuffer.front();
+            addantbuffer.pop_front();
+            addxcounters.pop_front();
+        }
+
+        if (cycle == 20 ||
+            cycle == 60 ||
+            cycle == 100 ||
+            cycle == 140 ||
+            cycle == 180 ||
+            cycle == 220) {
+        cout << "cycle: " << cycle << "\t x: " << x << endl; 
+            signalstrengths.push_back(cycle*x);
+        }
+
+        cycle += 1;
+/*
+        cout << "cycle: " << cycle << "\t x: " << x << endl; 
+        cout << "counters\t";*/
+        for (auto& c : addxcounters){
+            c++;
+       //     cout << c <<", ";
+        }
+    //    cout << "\taddants\t";
+        for (auto c : addantbuffer){
+     //       cout << c <<", ";
+        }
       //  cout << endl;
     }
     int sum = 0;
