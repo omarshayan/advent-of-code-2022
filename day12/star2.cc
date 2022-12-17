@@ -39,6 +39,7 @@ int main() {
     int linenum = 0;
     Node start;
     Node end;
+    vector<Node> frontier;
     while(getline(reader, line)) {
 
         stringstream ss(line);
@@ -49,12 +50,14 @@ int main() {
                 start = Node(make_tuple(linenum, i), 'a');
                 line[i] = 'a';
                 gridline.push_back('a');
+                frontier.push_back(start);
             } else if (line[i] == 'E') {
                 end = Node(make_tuple(linenum, i), 'z');
                 gridline.push_back('z');
             }
             else {
                 gridline.push_back(line[i]);
+                if(line[i] == 'a') {frontier.push_back(Node(make_tuple(linenum, i), 'a'));}
             }
         }
         cout << gridline << endl;
@@ -72,12 +75,12 @@ int main() {
         visited[make_tuple(i, j)] = -1;
         }
     }
-    visited[start.coords] = 0;
+    for (Node n : frontier) {
+        visited[n.coords] = 0;
+    }
     cout << "startcoords: " << get<0>(start.coords) << ", " << get<1>(start.coords) << endl;
 
     int level = 0;
-    vector<Node> frontier;
-    frontier.push_back(start);
     while (frontier.size() > 0) {
         vector<Node> next;
 
