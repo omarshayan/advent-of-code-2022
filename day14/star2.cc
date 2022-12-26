@@ -39,11 +39,11 @@ int main() {
             }
             newlines.push_back(x.size()-1);
     }
-    int minx = *min_element(x.begin(), x.end()) - 5;
+    int minx = *min_element(x.begin(), x.end()) - 250;
     int width = *max_element(x.begin(), x.end()) - minx;
     int miny = *min_element(y.begin(), y.end());
     int height = *max_element(y.begin(), y.end()) - miny;
-    vector<vector<char>> grid(*max_element(y.begin(), y.end()) + 10, vector<char>(width + 10, '.'));
+    vector<vector<char>> grid(*max_element(y.begin(), y.end()) + 2, vector<char>(width + 500, '.'));
     for(int i = 0; i < x.size()-1; i++) {
         if (count(newlines.begin(), newlines.end(), i) > 0) {continue;}
         else if (x[i] == x[i+1]) {
@@ -61,7 +61,7 @@ int main() {
         }
     }
 
-    grid.push_back(vector<char>(width + 10, 'F'));
+    grid.push_back(vector<char>(width + 500, '#'));
     for (auto v : grid){
         cout << v << endl;
     }
@@ -74,7 +74,7 @@ int main() {
     while(true) {
         cout << "curr in : " << curry << ", " << currx  << endl;
         if (grid[curry+1][currx] == 'F'){
-            cout << "we made it to the bottom! counter: " << counter << endl;
+            cout << "we made it to the bottom! counter: " << counter +1 << endl;
             return 0;
         }
         if (grid[curry+1][currx] == '.'){
@@ -93,6 +93,7 @@ int main() {
         }
         else {
             cout << "PLACED!" << endl;
+            if (curry == sourcey && currx == sourcex) { cout << "done. counter: " << counter << endl; return 0;}
             grid[curry][currx] = 'o';
             counter++;
             currx = sourcex;
