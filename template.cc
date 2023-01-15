@@ -24,19 +24,18 @@ int main() {
     ifstream reader("input.txt");
     string line;
     vector<vector<int>>grid;
-    vector<string> buffers;
-    while(getline(reader, line)) { buffers.push_back(line);} 
-    cout << buffers << endl;
-    for(int i = 0; i < buffers.size(); i++) {
+    vector<string> lines;
+    while(getline(reader, line)) { lines.push_back(line);} 
+    cout << lines << endl;
+    vector<vector<int>> lava;
+    for(int i = 0; i < lines.size(); i++) {
 
-        vector<string> buffer;
-        if (i < buffers.size()){
-            string line = buffers[i];
-            stringstream ss(line);
-            string str;
-            while (getline(ss, str, ' ')) {buffers.push_back(str);}
-
-        }
+        vector<int> coords;
+        stringstream ss(lines[i]);
+        string str;
+        while (getline(ss, str, ',')) {coords.push_back(stoi(str));}
+        lava.push_back(coords);
     }
+    for (auto v: lava) {cout << v<< endl;}
 }
 
